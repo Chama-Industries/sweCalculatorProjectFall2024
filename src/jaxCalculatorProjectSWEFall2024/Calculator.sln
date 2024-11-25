@@ -2,11 +2,7 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorLogic", "CalculatorLogic\CalculatorLogic.csproj", "{541E7DE4-DCAD-4FBA-B565-60F4325B8DD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorWebServerApp", "CalculatorWebServerApp\CalculatorWebServerApp.csproj", "{46C8A309-30A4-4D2D-A35D-104576FDB1E9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorLogicUnitTests", "CalculatorLogicUnitTests\CalculatorLogicUnitTests.csproj", "{FE8F884B-D8ED-43A4-8BAE-11677158AA2E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorEndToEndTests", "CalculatorEndToEndTests\CalculatorEndToEndTests.csproj", "{DC7EABA5-88F4-4048-9634-AB5C81814971}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorLogicUnitTests", "CalculatorLogicUnitTests\CalculatorLogicUnitTests.csproj", "{152ED6D1-F1B6-456D-9B60-17A0DDCB93DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,17 +14,9 @@ Global
 		{541E7DE4-DCAD-4FBA-B565-60F4325B8DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{541E7DE4-DCAD-4FBA-B565-60F4325B8DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{541E7DE4-DCAD-4FBA-B565-60F4325B8DD8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{46C8A309-30A4-4D2D-A35D-104576FDB1E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{46C8A309-30A4-4D2D-A35D-104576FDB1E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{46C8A309-30A4-4D2D-A35D-104576FDB1E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{46C8A309-30A4-4D2D-A35D-104576FDB1E9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FE8F884B-D8ED-43A4-8BAE-11677158AA2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE8F884B-D8ED-43A4-8BAE-11677158AA2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE8F884B-D8ED-43A4-8BAE-11677158AA2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE8F884B-D8ED-43A4-8BAE-11677158AA2E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DC7EABA5-88F4-4048-9634-AB5C81814971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DC7EABA5-88F4-4048-9634-AB5C81814971}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DC7EABA5-88F4-4048-9634-AB5C81814971}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DC7EABA5-88F4-4048-9634-AB5C81814971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{152ED6D1-F1B6-456D-9B60-17A0DDCB93DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{152ED6D1-F1B6-456D-9B60-17A0DDCB93DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{152ED6D1-F1B6-456D-9B60-17A0DDCB93DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{152ED6D1-F1B6-456D-9B60-17A0DDCB93DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
