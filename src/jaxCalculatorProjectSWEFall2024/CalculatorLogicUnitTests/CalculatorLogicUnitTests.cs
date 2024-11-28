@@ -5,6 +5,33 @@ namespace CalculatorLogicUnitTests;
 public class CalculatorLogicUnitTests
 {
     // Calculation Result Tests for Coverage (make sure it works)
+    [Test]
+    public void CalculationResult_GetBoolean_ReturnsBoolean()
+    {
+        // Arrange
+        var calcResult = new CalculationResult();
+        const bool expected = true;
+        
+        // Act
+        var result = calcResult.GetWorking();
+
+        // Assert
+        Assert.That(result, Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void CalculationResult_GetString_ReturnsString()
+    {
+        // Arrange
+        var calcResult = new CalculationResult();
+        const string expected = "";
+        
+        // Act
+        var result = calcResult.GetMethodType();
+
+        // Assert
+        Assert.That(result, Is.EqualTo(expected));
+    }
     
     // Descriptive Statistics Logic Tests
     [Test]
@@ -234,6 +261,76 @@ public class CalculatorLogicUnitTests
         // Assert
         Assert.That(result.GetEquationResult(), Is.EqualTo(expected));
     }
+    
+    [Test]
+    public void ComputeSingleLinearRegression_TwoListsOfFloatsOfDifferentLengths_ReturnsError()
+    {
+        // Arrange
+        List<double> xValues = [
+            1,
+            1,
+            1,
+            2,
+            1,
+            1.0,
+            1,
+        ];
+        List<double> yValues = [
+            52.21,
+            53.12,
+            54.48,
+            55.84,
+            57.2,
+            58.57,
+            59.93,
+            61.29,
+            63.11,
+            64.47,
+            66.28,
+            68.1,
+            69.92,
+            72.19,
+            74.46
+        ];
+        const string expected = "Error: The number of xValues and yValues do not match.";
+        
+        // Act
+        var result = LinearRegression.ComputeSingularLinearRegression(xValues, yValues);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void ComputeSingleLinearRegression_TwoListsOfFloatingPointValues_ReturnsSingleLinearRegressionFormulaWithNegativeSlope()
+    {
+        // Arrange
+        List<double> xValues =
+        [
+            9,
+            6,
+            4,
+            1.5,
+            0.25
+        ];
+        List<double> yValues =
+        [
+            50,
+            55,
+            60.5,
+            70,
+            85.5
+        ];
+        //we round to roughly 2 decimal places here, looks nicer (and prevents everything from setting ablaze)
+        const string expected = "-3.735x + 79.70";
+        
+        // Act
+        var result = LinearRegression.ComputeSingularLinearRegression(xValues, yValues);
+        
+        // Assert
+        Assert.That(result.GetEquationResult(), Is.EqualTo(expected));
+    }
+
 
     [Test]
     public void ComputeSingleLinearRegression_AtLeastOneListEmpty_ReturnsError()
@@ -390,7 +487,6 @@ public class CalculatorLogicUnitTests
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
     }
-    //still need a test with a negative slope
 
     [Test]
     public void ComputeYFromLinearRegression_ThreeFloats_ReturnsYValue()
