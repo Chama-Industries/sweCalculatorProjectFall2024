@@ -1,0 +1,59 @@
+@page "/Calculator"
+<div class="Calculator">
+    <div class="row">
+        <div class="col-10">
+            <h1>Calculator</h1>
+        </div>
+        <div class="col-2">
+            <button id="clearCalculator">Clear</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-warning" role="alert">
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+        </div>
+        <div class="row">
+            <div class="col-12">
+            </div>
+        </div>
+    </div>
+</div>
+<section>
+    Values
+    <br/>
+    <input id="userInput" type="text" value="0" />
+    <br/>
+</section>
+
+<section>
+    Descriptive Statistics
+    <br/>
+    <button id="sampleSD">Compute Sample Standard Deviation | One Value per Line</button>
+    <br/>
+    <button id="populationSD">Compute Population Standard Deviation | One Value per Line</button>
+    <br/>
+    <button id="mean">Compute Mean | One Value per Line</button>
+    <br/>
+    <button id="zScore">Compute Z-Score | value, mean, stdDev on one Line</button>
+    <br/>
+</section>
+
+<section>
+    Single Linear Regression
+    <br/>
+    <button id="singleLinearRegressionFormula">Compute Single Linear Regression Formula | One X,Y pair per Line</button>
+    <br/>
+    <button id="computeY">Predict Y from Linear Regression Formula | x, m, b, on one Line</button>
+    <br/>
+</section>
+
+
+@code {
+    
+}

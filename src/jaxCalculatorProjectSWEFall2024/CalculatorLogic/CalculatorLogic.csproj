@@ -1,11 +1,19 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <OutputType>Exe</OutputType>
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <RootNamespace>jaxCalculatorProjectSWEFall2024</RootNamespace>
     </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Playwright.NUnit" Version="1.50.0-beta-2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Program.cs" />
+      <Compile Remove="programstart.cs" />
+    </ItemGroup>
 
 </Project>
