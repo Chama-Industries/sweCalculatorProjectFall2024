@@ -1,59 +1,65 @@
-@page "/Calculator"
-<div class="Calculator">
+<div class="container">
     <div class="row">
         <div class="col-10">
             <h1>Calculator</h1>
         </div>
-        <div class="col-2">
-            <button id="clearCalculator">Clear</button>
+        <div class="col-2 mx-auto">
+            <button class="form-control" style="background: #EBEBEB; color: black; border: black;">Clear</button>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <div class="alert alert-warning" role="alert">
-
+            <div class="alert alert-warning" style="background: #FFECD7">
+                @Message
             </div>
         </div>
     </div>
+    <h5>Values:</h5>
     <div class="row">
         <div class="col-12">
+            <textarea
+            class="form-control"
+            rows="3"
+            @bind="@Data">@Data
+            </textarea>
         </div>
-        <div class="row">
-            <div class="col-12">
-            </div>
+    </div>
+    <br/>
+    <h4>Descriptive Statistics</h4>
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <button class = "form-control" style="background: #EBEBEB; color: black; border: black;">Compute Sample Standard Deviation | one value per line</button>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <button class = "form-control" style="background: #EBEBEB; color: black; border: black;">Compute Population Standard Deviation | one value per line</button>
+        </div>
+    </div>    
+    <br/>
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <button class = "form-control" style="background: #EBEBEB; color: black; border: black;">Compute Mean | one value per line</button>
+        </div>
+    </div>    
+    <br/>
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <button class = "form-control" style="background: #EBEBEB; color: black; border: black;">Compute Z Score | value, mean, stdDev on one line</button>
+        </div>
+    </div>
+    <br/>
+    <h4>Single Linear Regression</h4>
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <button class = "form-control" style="background: #EBEBEB; color: black; border: black;">Compute Single Linear Regression Formula | one X,Y pair per line</button>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <button class = "form-control" style="background: #EBEBEB; color: black; border: black;">Predict Y from Linear Regression Formula | x, m, b on one line</button>
         </div>
     </div>
 </div>
-<section>
-    Values
-    <br/>
-    <input id="userInput" type="text" value="0" />
-    <br/>
-</section>
-
-<section>
-    Descriptive Statistics
-    <br/>
-    <button id="sampleSD">Compute Sample Standard Deviation | One Value per Line</button>
-    <br/>
-    <button id="populationSD">Compute Population Standard Deviation | One Value per Line</button>
-    <br/>
-    <button id="mean">Compute Mean | One Value per Line</button>
-    <br/>
-    <button id="zScore">Compute Z-Score | value, mean, stdDev on one Line</button>
-    <br/>
-</section>
-
-<section>
-    Single Linear Regression
-    <br/>
-    <button id="singleLinearRegressionFormula">Compute Single Linear Regression Formula | One X,Y pair per Line</button>
-    <br/>
-    <button id="computeY">Predict Y from Linear Regression Formula | x, m, b, on one Line</button>
-    <br/>
-</section>
-
-
-@code {
-    
-}
