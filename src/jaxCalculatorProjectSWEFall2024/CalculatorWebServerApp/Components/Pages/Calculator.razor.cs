@@ -1,3 +1,4 @@
+using jaxCalculatorProjectSWEFall2024;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -16,11 +17,18 @@ public partial class Calculator : ComponentBase
     
     private List<Points> UserInput { get; set; } = new();
     
+    private List<string> _formattedStringInput = new();
+    
     private void ComputeHandleDataChange(ChangeEventArgs uInput)
     {
-        //if it ain't broke don't fix it
+        //Relevant Code to put input into a workable format for the Linear Regression call, otherwise its just left as a list of strings if applicable
         Data = uInput.Value?.ToString() ?? string.Empty;
         var singleLineInput = Data.Split('\n');
+        foreach (var line in singleLineInput)
+        {
+            //saved so we can use it in other methods without having to come back here
+            _formattedStringInput.Add(line);
+        }
         foreach (var pair in singleLineInput)
         {
             var xy = pair.Split(',');
@@ -52,7 +60,19 @@ public partial class Calculator : ComponentBase
     
     private void ComputeMean(MouseEventArgs mouseEventArgs)
     {
-        Message = "This does something in the future for the Mean.";
+        CalculationResult result = DescriptiveStatistics.ComputeMean(_formattedStringInput);
+        if (result.GetWorking())
+        {
+            Message = result.GetEquationResult() + "\n " + result.GetResult();
+            Data = "";
+            _formattedStringInput.Clear();
+        }
+        else
+        {
+            Message = result.GetErrorMessage();
+            Data = "";
+            _formattedStringInput.Clear();
+        }
     }
     
     private void ComputeZScore(MouseEventArgs mouseEventArgs)

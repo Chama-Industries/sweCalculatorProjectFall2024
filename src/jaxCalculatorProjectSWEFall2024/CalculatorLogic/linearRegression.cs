@@ -131,12 +131,39 @@ public class LinearRegression
         return result;
     }
 
-public static CalculationResult ComputeYFromLinearRegression(float x, float slope, float b)
+    public static CalculationResult ComputeYFromLinearRegression(string inX, string inSlope, string inB)
     {
-        //still needs error handling (no input for one of the parameters)
         CalculationResult result = new CalculationResult();
+        if (!float.TryParse(inX, out float parsedValueX))
+        {
+            result.SetWorking(false);
+            result.SetMethodType("Compute Y from Linear Regression");
+            result.SetErrorMessage("Error: Cannot input non numbers into the calculation.");
+            return result;
+        }
+        float x = parsedValueX;
+        
+        if (!float.TryParse(inSlope, out float parsedValueS))
+        {
+            result.SetWorking(false);
+            result.SetMethodType("Compute Y from Linear Regression");
+            result.SetErrorMessage("Error: Cannot input non numbers into the calculation.");
+            return result;
+        }
+        float slope = parsedValueS;
+        
+        if (!float.TryParse(inB, out float parsedValueB))
+        {
+            result.SetWorking(false);
+            result.SetMethodType("Compute Y from Linear Regression");
+            result.SetErrorMessage("Error: Cannot input non numbers into the calculation.");
+            return result;
+        }
+        float b = parsedValueB;
+        
         //uses y = mx + b (classic formula)
         result.SetResult(slope * x + b);
+        result.SetEquationResult("" + slope + " * " + x + " + " + b);
         result.SetWorking(true);
         result.SetMethodType("Compute Y from Linear Regression");
         return result;
