@@ -1,11 +1,10 @@
-@using jaxCalculatorProjectSWEFall2024
 <div class="container">
     <div class="row">
         <div class="col-10">
             <h1>Calculator</h1>
         </div>
         <div class="col-2 mx-auto">
-            <button type = "reset" class="form-control" style="background: #EBEBEB; color: black; border: black;">Clear</button>
+            <button class="form-control" style="background: #EBEBEB; color: black; border: black;" @onclick="OnClickResetCalculator">Clear</button>
         </div>
     </div>
     <div class="row">
@@ -21,7 +20,8 @@
             <textarea 
             class="form-control"
             rows="3"
-            @bind="Data">
+            value ="@Data"
+            @onchange="ComputeHandleDataChange">
             </textarea>
         </div>
     </div>
@@ -29,38 +29,38 @@
     <h4>Descriptive Statistics</h4>
     <div class="row">
         <div class="col-12 mx-auto">
-            <button type = "submit" class = "form-control" style="background: #EBEBEB; color: black; border: black;">Compute Sample Standard Deviation | one value per line</button>
+            <button type = "submit" class = "form-control" style="background: #EBEBEB; color: black; border: black;" @onclick="ComputeSampleStandardDev">Compute Sample Standard Deviation | one value per line</button>
         </div>
     </div>
     <br/>
     <div class="row">
         <div class="col-12 mx-auto">
-            <button type = "submit" class = "form-control" style="background: #EBEBEB; color: black; border: black;">Compute Population Standard Deviation | one value per line</button>
+            <button type = "submit" class = "form-control" style="background: #EBEBEB; color: black; border: black;" @onclick="ComputePopulationStandardDev">Compute Population Standard Deviation | one value per line</button>
         </div>
     </div>    
     <br/>
     <div class="row">
         <div class="col-12 mx-auto">
-            <button type = "submit"  class = "form-control" style="background: #EBEBEB; color: black; border: black;">Compute Mean | one value per line</button>
+            <button type = "submit"  class = "form-control" style="background: #EBEBEB; color: black; border: black;" @onclick="ComputeMean">Compute Mean | one value per line</button>
         </div>
     </div>    
     <br/>
     <div class="row">
         <div class="col-12 mx-auto">
-            <button type = "submit"  class = "form-control" style="background: #EBEBEB; color: black; border: black;">Compute Z Score | value, mean, stdDev on one line</button>
+            <button type = "submit"  class = "form-control" style="background: #EBEBEB; color: black; border: black;" @onclick="ComputeZScore">Compute Z Score | value, mean, stdDev on one line</button>
         </div>
     </div>
     <br/>
     <h4>Single Linear Regression</h4>
     <div class="row">
         <div class="col-12 mx-auto">
-            <button type = "submit"  class = "form-control" style="background: #EBEBEB; color: black; border: black;">Compute Single Linear Regression Formula | one X,Y pair per line</button>
+            <button type = "submit"  class = "form-control" style="background: #EBEBEB; color: black; border: black;" @onclick="ComputeSingleLinearRegressionFormula">Compute Single Linear Regression Formula | one X,Y pair per line</button>
         </div>
     </div>
     <br/>
     <div class="row">
         <div class="col-12 mx-auto">
-            <button type = "submit"  class = "form-control" style="background: #EBEBEB; color: black; border: black;">Predict Y from Linear Regression Formula | x, m, b on one line</button>
+            <button type = "submit"  class = "form-control" style="background: #EBEBEB; color: black; border: black;" @onclick="ComputeYPrediction">Predict Y from Linear Regression Formula | x, m, b on one line</button>
         </div>
     </div>
 </div>
