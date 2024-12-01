@@ -34,16 +34,17 @@ public class CalculatorLogicUnitTests
     }
     
     // Descriptive Statistics Logic Tests
+    // Compute Mean 
     [Test]
     public void ComputeMean_ListOfFloatingPointValues_ReturnsCorrectMean()
     {
         // Arrange (declare variables needed for testing)
-        List<float> values = new List<float>();
-        values.Add(9);
-        values.Add(6);
-        values.Add(8);
-        values.Add(5);
-        values.Add(7);
+        List<string> values = new List<string>();
+        values.Add("9");
+        values.Add("6");
+        values.Add("8");
+        values.Add("5");
+        values.Add("7");
         const double expected = 7;
         
         // Act (Call the Method/System you wish to test
@@ -57,12 +58,12 @@ public class CalculatorLogicUnitTests
     public void ComputeMean_ListOfFloatingPointValues_ReturnsZero()
     {
         // Arrange (declare variables needed for testing)
-        List<float> values = new List<float>();
-        values.Add(10);
-        values.Add(-10);
-        values.Add(45);
-        values.Add(0);
-        values.Add(-45);
+        List<string> values = new List<string>();
+        values.Add("10");
+        values.Add("-10");
+        values.Add("45");
+        values.Add("0");
+        values.Add("-45");
         const double expected = 0;
         
         // Act (Call the Method/System you wish to test
@@ -76,7 +77,7 @@ public class CalculatorLogicUnitTests
     public void ComputeMean_EmptyList_ReturnsError()
     {
         // Arrange
-        List<float> values = new List<float>();
+        List<string> values = new List<string>();
         const string expected = "Error: Input is empty.";
         
         // Act
@@ -87,17 +88,33 @@ public class CalculatorLogicUnitTests
     }
 
     [Test]
+    public void ComputeMean_NonNumberInList_ReturnsSyntaxError()
+    {
+        // Arrange
+        List<string> values = new List<string>();
+        values.Add("baboon");
+        const string expected = "Error: Cannot input non numbers into the calculation.";
+        
+        // Act
+        var result = DescriptiveStatistics.ComputeMean(values);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
+    
+    // Compute Standard Deviation
+    [Test]
     public void ComputeStandardDeviation_ListOfFloatingPointValuesFloatAndBoolean_ReturnsSampleStandardDeviation()
     {
         // Arrange
-        const float mean = 7.0f;
+        const string mean = "7.0";
         const bool isPopulation = false;
-        List<float> values = new List<float>();
-        values.Add(9);
-        values.Add(6);
-        values.Add(8);
-        values.Add(5);
-        values.Add(7);
+        List<string> values = new List<string>();
+        values.Add("9");
+        values.Add("6");
+        values.Add("8");
+        values.Add("5");
+        values.Add("7");
         const double expected = 1.5811388492584229;
         
         
@@ -112,14 +129,14 @@ public class CalculatorLogicUnitTests
     public void ComputeStandardDeviation_ListOfFloatingPointValuesFloatAndBoolean_ReturnsPopulationStandardDeviation()
     {
         // Arrange
-        const float mean = 7.0f;
+        const string mean = "7.0";
         const bool isPopulation = true;
-        List<float> values = new List<float>();
-        values.Add(9);
-        values.Add(6);
-        values.Add(8);
-        values.Add(5);
-        values.Add(7);
+        List<string> values = new List<string>();
+        values.Add("9");
+        values.Add("6");
+        values.Add("8");
+        values.Add("5");
+        values.Add("7");
         const double expected = 1.4142135381698608;
         
         
@@ -134,11 +151,48 @@ public class CalculatorLogicUnitTests
     public void ComputeStandardDeviation_SmallPopulationList_ReturnsPopulationError()
     {
         // Arrange
-        List<float> values = new List<float>();
-        values.Add(9);
-        const float mean = 0.0f;
+        List<string> values = new List<string>();
+        values.Add("9");
+        const string mean = "0";
         const bool isPopulation = true;
         const string expected = "Error: Input Population is Too Small/Empty.";
+        
+        // Act
+        var result = DescriptiveStatistics.ComputeStandardDeviation(values, mean, isPopulation);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void ComputeStandardDeviation_NonNumberInList_ReturnsSyntaxError()
+    {
+        // Arrange
+        List<string> values = new List<string>();
+        values.Add("kangaroo");
+        const string mean = "0";
+        const bool isPopulation = true;
+        const string expected = "Error: Cannot input non numbers into the calculation.";
+        
+        // Act
+        var result = DescriptiveStatistics.ComputeStandardDeviation(values, mean, isPopulation);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void ComputeStandardDeviation_NonNumberInMean_ReturnsSyntaxError()
+    {
+        // Arrange
+        List<string> values = new List<string>();
+        values.Add("2");
+        values.Add("22");
+        values.Add("222");
+        values.Add("2222");
+        const string mean = "bird";
+        const bool isPopulation = true;
+        const string expected = "Error: Cannot input non numbers into the calculation.";
         
         // Act
         var result = DescriptiveStatistics.ComputeStandardDeviation(values, mean, isPopulation);
@@ -151,8 +205,8 @@ public class CalculatorLogicUnitTests
     public void ComputeStandardDeviation_EmptyPopulationList_ReturnsError()
     {
         // Arrange
-        List<float> values = new List<float>();
-        const float mean = 0.0f;
+        List<string> values = new List<string>();
+        const string mean = "0";
         const bool isPopulation = true;
         const string expected = "Error: Input Population is Too Small/Empty.";
         
@@ -167,8 +221,8 @@ public class CalculatorLogicUnitTests
     public void ComputeStandardDeviation_EmptySampleList_ReturnsError()
     {
         // Arrange
-        List<float> values = new List<float>();
-        const float mean = 0.0f;
+        List<string> values = new List<string>();
+        const string mean = "0";
         const bool isPopulation = false;
         const string expected = "Error: Input is Empty.";
         
@@ -179,13 +233,14 @@ public class CalculatorLogicUnitTests
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
     }
 
+    // Compute Z Score
     [Test]
     public void ComputeZScore_ThreeFloatingPointValues_ReturnsZScore()
     {
         // Arrange
-        const float inputValue = 3.0f;
-        const float mean = 7.0f;
-        const float standardDeviation = 2.0f;
+        const string inputValue = "3.0";
+        const string mean = "7.0";
+        const string standardDeviation = "2.0";
         const float expected = 5.0f;
         
         // Act
@@ -199,10 +254,58 @@ public class CalculatorLogicUnitTests
     public void ComputeZScore_ZeroStandardDeviation_ReturnsDivideByZeroError()
     {
         // Arrange
-        const float inputValue = 3.0f;
-        const float mean = 7.0f;
-        const float standardDeviation = 0.0f;
+        const string inputValue = "3.0";
+        const string mean = "7.0";
+        const string standardDeviation = "0.0";
         const string expected = "Error: Cannot Divide by Zero.";
+        
+        // Act
+        var result = DescriptiveStatistics.ComputeZScore(inputValue, mean, standardDeviation);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
+
+    [Test]
+    public void ComputeZScore_NonNumberInputToSolve_ReturnsDivideByZeroError()
+    {
+        // Arrange
+        const string inputValue = "cat";
+        const string mean = "7.0";
+        const string standardDeviation = "2.0";
+        const string expected = "Error: Cannot input non numbers into the calculation.";
+        
+        // Act
+        var result = DescriptiveStatistics.ComputeZScore(inputValue, mean, standardDeviation);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void ComputeZScore_NonNumberMean_ReturnsDivideByZeroError()
+    {
+        // Arrange
+        const string inputValue = "3.0";
+        const string mean = "dog";
+        const string standardDeviation = "2.0";
+        const string expected = "Error: Cannot input non numbers into the calculation.";
+        
+        // Act
+        var result = DescriptiveStatistics.ComputeZScore(inputValue, mean, standardDeviation);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void ComputeZScore_NonNumberStDev_ReturnsDivideByZeroError()
+    {
+        // Arrange
+        const string inputValue = "3.0";
+        const string mean = "7.0";
+        const string standardDeviation = "mouse";
+        const string expected = "Error: Cannot input non numbers into the calculation.";
         
         // Act
         var result = DescriptiveStatistics.ComputeZScore(inputValue, mean, standardDeviation);
@@ -492,9 +595,9 @@ public class CalculatorLogicUnitTests
     public void ComputeYFromLinearRegression_ThreeFloats_ReturnsYValue()
     {
         // Arrange
-        const float xInput = 1.6f;
-        const float slope = 2.4f;
-        const float bCoefficient = 10.0f;
+        const string xInput = "1.6";
+        const string slope = "2.4";
+        const string bCoefficient = "10.0";
         const float expected = 13.84f;
         
         // Act
@@ -503,5 +606,52 @@ public class CalculatorLogicUnitTests
         // Assert
         Assert.That(result.GetResult(), Is.EqualTo(expected));
     }
+
+    [Test]
+    public void ComputeYFromLinearRegression_NonNumberXInput_ReturnsSyntaxError()
+    {
+        // Arrange
+        const string xInput = "owl";
+        const string slope = "2.4";
+        const string bCoefficient = "10.0";
+        const string expected = "Error: Cannot input non numbers into the calculation.";
+        
+        // Act
+        var result = LinearRegression.ComputeYFromLinearRegression(xInput, slope, bCoefficient);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
     
+    [Test]
+    public void ComputeYFromLinearRegression_NonNumberSlopeInput_ReturnsSyntaxError()
+    {
+        // Arrange
+        const string xInput = "1.6";
+        const string slope = "ostrich";
+        const string bCoefficient = "10.0";
+        const string expected = "Error: Cannot input non numbers into the calculation.";
+        
+        // Act
+        var result = LinearRegression.ComputeYFromLinearRegression(xInput, slope, bCoefficient);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void ComputeYFromLinearRegression_NonNumberBInput_ReturnsSyntaxError()
+    {
+        // Arrange
+        const string xInput = "1.6";
+        const string slope = "2.4";
+        const string bCoefficient = "rat";
+        const string expected = "Error: Cannot input non numbers into the calculation.";
+        
+        // Act
+        var result = LinearRegression.ComputeYFromLinearRegression(xInput, slope, bCoefficient);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
 }
