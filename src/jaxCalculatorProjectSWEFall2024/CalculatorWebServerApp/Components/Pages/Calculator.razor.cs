@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace CalculatorWebServerApp.Components.Pages;
 
@@ -15,9 +16,10 @@ public partial class Calculator : ComponentBase
     
     private List<Points> UserInput { get; set; } = new();
     
-    private void ComputeHandleDataChange(string uInput)
+    private void ComputeHandleDataChange(ChangeEventArgs uInput)
     {
-        Data = uInput;
+        //if it ain't broke don't fix it
+        Data = uInput.Value?.ToString() ?? string.Empty;
         var singleLineInput = Data.Split('\n');
         foreach (var pair in singleLineInput)
         {
@@ -29,10 +31,42 @@ public partial class Calculator : ComponentBase
         }
 
         Message = string.Join(", ", UserInput);
+        StateHasChanged();
     }
 
-    private void ComputeChangeMessage()
+    private void OnClickResetCalculator(MouseEventArgs mouseEventArgs)
     {
-        Message = "Test Message";
+        Data = "";
+        Message = "Enter values below, then select operation";
+    }
+    
+    private void ComputeSampleStandardDev(MouseEventArgs mouseEventArgs)
+    {
+        Message = "This does something in the future for the Sample Standard Dev.";
+    }
+    
+    private void ComputePopulationStandardDev(MouseEventArgs mouseEventArgs)
+    {
+        Message = "This does something in the future for the Population Standard Dev.";
+    }
+    
+    private void ComputeMean(MouseEventArgs mouseEventArgs)
+    {
+        Message = "This does something in the future for the Mean.";
+    }
+    
+    private void ComputeZScore(MouseEventArgs mouseEventArgs)
+    {
+        Message = "This does something in the future for the Z Score.";
+    }
+    
+    private void ComputeSingleLinearRegressionFormula(MouseEventArgs mouseEventArgs)
+    {
+        Message = "This does something in the future for the Maths.";
+    }
+    
+    private void ComputeYPrediction(MouseEventArgs mouseEventArgs)
+    {
+        Message = "This does something in the future for the thing that uses the points.";
     }
 }
