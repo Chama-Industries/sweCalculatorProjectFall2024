@@ -209,8 +209,8 @@ public class DescriptiveStatistics
             result.SetErrorMessage("Error: Cannot Divide by Zero.");
         }
         
-        result.SetResult((inputToSolve + mean)/(standardDeviation));
-        result.SetEquationResult("(" + inputToSolve + mean + ") / " + standardDeviation);
+        result.SetResult(Math.Abs((inputToSolve - mean)/(standardDeviation)));
+        result.SetEquationResult("(" + inputToSolve + "-" +  mean + ") / " + standardDeviation);
         result.SetWorking(true);
         result.SetMethodType("Z Score");
         return result;

@@ -238,10 +238,10 @@ public class CalculatorLogicUnitTests
     public void ComputeZScore_ThreeFloatingPointValues_ReturnsZScore()
     {
         // Arrange
-        const string inputValue = "3.0";
-        const string mean = "7.0";
-        const string standardDeviation = "2.0";
-        const float expected = 5.0f;
+        const string inputValue = "11.5";
+        const string mean = "7";
+        const string standardDeviation = "2";
+        const double expected = 2.25;
         
         // Act
         var result = DescriptiveStatistics.ComputeZScore(inputValue, mean, standardDeviation);
@@ -267,7 +267,7 @@ public class CalculatorLogicUnitTests
     }
 
     [Test]
-    public void ComputeZScore_NonNumberInputToSolve_ReturnsDivideByZeroError()
+    public void ComputeZScore_NonNumberInputToSolve_ReturnsSyntaxError()
     {
         // Arrange
         const string inputValue = "cat";
@@ -283,7 +283,7 @@ public class CalculatorLogicUnitTests
     }
     
     [Test]
-    public void ComputeZScore_NonNumberMean_ReturnsDivideByZeroError()
+    public void ComputeZScore_NonNumberMean_ReturnsSyntaxError()
     {
         // Arrange
         const string inputValue = "3.0";
@@ -299,7 +299,7 @@ public class CalculatorLogicUnitTests
     }
     
     [Test]
-    public void ComputeZScore_NonNumberStDev_ReturnsDivideByZeroError()
+    public void ComputeZScore_NonNumberStDev_ReturnsSyntaxError()
     {
         // Arrange
         const string inputValue = "3.0";
@@ -319,86 +319,91 @@ public class CalculatorLogicUnitTests
     public void ComputeSingleLinearRegression_TwoListsOfFloatingPointValues_ReturnsSingleLinearRegressionFormula()
     {
         // Arrange
-        List<double> xValues =
+        List<string> inputValues =
         [
-            1.47,
-            1.5,
-            1.52,
-            1.55,
-            1.57,
-            1.6,
-            1.63,
-            1.65,
-            1.68,
-            1.7,
-            1.73,
-            1.75,
-            1.78,
-            1.8,
-            1.83
-        ];
-        List<double> yValues =
-        [
-            52.21,
-            53.12,
-            54.48,
-            55.84,
-            57.2,
-            58.57,
-            59.93,
-            61.29,
-            63.11,
-            64.47,
-            66.28,
-            68.1,
-            69.92,
-            72.19,
-            74.46
+            "1.47, 52.21",
+            "1.5, 53.12",
+            "1.52, 54.48",
+            "1.55, 55.84",
+            "1.57, 57.2",
+            "1.6, 58.57",
+            "1.63, 59.93",
+            "1.65, 61.29",
+            "1.68, 63.11",
+            "1.7, 64.47",
+            "1.73, 66.28",
+            "1.75, 68.1",
+            "1.78, 69.92",
+            "1.8, 72.19",
+            "1.83, 74.46"
         ];
         //we round to 2 decimal places here, looks nicer (and prevents everything from setting ablaze)
         const string expected = "61.27x + -39.06";
         
         // Act
-        var result = LinearRegression.ComputeSingularLinearRegression(xValues, yValues);
+        var result = LinearRegression.ComputeSingularLinearRegression(inputValues);
         
         // Assert
         Assert.That(result.GetEquationResult(), Is.EqualTo(expected));
     }
     
     [Test]
-    public void ComputeSingleLinearRegression_TwoListsOfFloatsOfDifferentLengths_ReturnsError()
+    public void ComputeSingleLinearRegression_TwoListsOfFloatsOfDifferentLengthsXSide_ReturnsError()
     {
         // Arrange
-        List<double> xValues = [
-            1,
-            1,
-            1,
-            2,
-            1,
-            1.0,
-            1,
-        ];
-        List<double> yValues = [
-            52.21,
-            53.12,
-            54.48,
-            55.84,
-            57.2,
-            58.57,
-            59.93,
-            61.29,
-            63.11,
-            64.47,
-            66.28,
-            68.1,
-            69.92,
-            72.19,
-            74.46
+        List<string> inputValues =
+        [
+            "1.47, 52.21",
+            "1.5, 53.12",
+            " , 54.48",
+            "1.55, 55.84",
+            "1.57, 57.2",
+            "1.6, 58.57",
+            "1.63, 59.93",
+            " , 61.29",
+            "1.68, 63.11",
+            "1.7, 64.47",
+            "1.73, 66.23",
+            "1.75, 68.1",
+            "  , 69.92",
+            "1.8, 72.19",
+            "1.83, 74.46"
         ];
         const string expected = "Error: The number of xValues and yValues do not match.";
         
         // Act
-        var result = LinearRegression.ComputeSingularLinearRegression(xValues, yValues);
+        var result = LinearRegression.ComputeSingularLinearRegression(inputValues);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void ComputeSingleLinearRegression_TwoListsOfFloatsOfDifferentLengthsYSide_ReturnsError()
+    {
+        // Arrange
+        List<string> inputValues =
+        [
+            "1.47, 52.21",
+            "1.5, 53.12",
+            "1.52, 54.48",
+            "1.55, 55.84",
+            "1.57, 57.2",
+            "1.6, 58.57",
+            "1.63,   ",
+            "1.65, 61.29",
+            "1.68, 63.11",
+            "1.7,    ",
+            "1.73, 66.23",
+            "1.75, 68.1",
+            "1.78, 69.92",
+            "1.8,    ",
+            "1.83, 74.46"
+        ];
+        const string expected = "Error: The number of xValues and yValues do not match.";
+        
+        // Act
+        var result = LinearRegression.ComputeSingularLinearRegression(inputValues);
         
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
@@ -408,27 +413,19 @@ public class CalculatorLogicUnitTests
     public void ComputeSingleLinearRegression_TwoListsOfFloatingPointValues_ReturnsSingleLinearRegressionFormulaWithNegativeSlope()
     {
         // Arrange
-        List<double> xValues =
+        List<string> inputValues =
         [
-            9,
-            6,
-            4,
-            1.5,
-            0.25
-        ];
-        List<double> yValues =
-        [
-            50,
-            55,
-            60.5,
-            70,
-            85.5
+            "9, 50",
+            "6, 55",
+            "4, 60.5",
+            "1.5, 70",
+            "0.25, 85.5"
         ];
         //we round to roughly 2 decimal places here, looks nicer (and prevents everything from setting ablaze)
         const string expected = "-3.735x + 79.70";
         
         // Act
-        var result = LinearRegression.ComputeSingularLinearRegression(xValues, yValues);
+        var result = LinearRegression.ComputeSingularLinearRegression(inputValues);
         
         // Assert
         Assert.That(result.GetEquationResult(), Is.EqualTo(expected));
@@ -439,12 +436,11 @@ public class CalculatorLogicUnitTests
     public void ComputeSingleLinearRegression_AtLeastOneListEmpty_ReturnsError()
     {
         // Arrange
-        List<double> xValues = new List<double>();
-        List<double> yValues = new List<double>();
+        List<string> values = new List<string>();
         const string expected = "Error: You cannot input an Empty List.";
         
         // Act
-        var result = LinearRegression.ComputeSingularLinearRegression(xValues, yValues);
+        var result = LinearRegression.ComputeSingularLinearRegression(values);
         
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
@@ -454,44 +450,18 @@ public class CalculatorLogicUnitTests
     public void ComputeSingleLinearRegression_XListOfDuplicates_ReturnsError()
     {
         // Arrange
-        List<double> xValues = [
-            1,
-            1,
-            1,
-            1,
-            1,
-            1.0,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1.0,
-            1,
-            1
-        ];
-        List<double> yValues = [
-            52.21,
-            53.12,
-            54.48,
-            55.84,
-            57.2,
-            58.57,
-            59.93,
-            61.29,
-            63.11,
-            64.47,
-            66.28,
-            68.1,
-            69.92,
-            72.19,
-            74.46
+        List<string> inputValues =
+        [
+            "1, 50",
+            "1.0, 55",
+            "1, 60.5",
+            "1, 70",
+            "1.0, 85.5"
         ];
         const string expected = "Error: You cannot input a list with only duplicate values.";
         
         // Act
-        var result = LinearRegression.ComputeSingularLinearRegression(xValues, yValues);
+        var result = LinearRegression.ComputeSingularLinearRegression(inputValues);
         
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
@@ -501,44 +471,60 @@ public class CalculatorLogicUnitTests
     public void ComputeSingleLinearRegression_YListOfDuplicates_ReturnsError()
     {
         // Arrange
-        List<double> xValues = [
-            1.47,
-            1.5,
-            1.52,
-            1.55,
-            1.57,
-            1.6,
-            1.63,
-            1.65,
-            1.68,
-            1.7,
-            1.73,
-            1.75,
-            1.78,
-            1.8,
-            1.83
-        ];
-        List<double> yValues = [
-            5,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5.0,
-            5,
-            5,
-            5,
-            5,
-            5,
-            5.0,
-            5,
-            5
+        List<string> inputValues =
+        [
+            "9, 50",
+            "6, 50",
+            "4, 50",
+            "1.5, 50",
+            "0.25, 50"
         ];
         const string expected = "Error: You cannot input a list with only duplicate values.";
         
         // Act
-        var result = LinearRegression.ComputeSingularLinearRegression(xValues, yValues);
+        var result = LinearRegression.ComputeSingularLinearRegression(inputValues);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void ComputeSingleLinearRegression_NonNumberInXList_ReturnsSyntaxError()
+    {
+        // Arrange
+        List<string> inputValues =
+        [
+            "fox, 49",
+            "6, 50",
+            "4, 52",
+            "1.5, 53",
+            "0.25, 56"
+        ];
+        const string expected = "Error: Cannot input non numbers into the calculation.";
+        
+        // Act
+        var result = LinearRegression.ComputeSingularLinearRegression(inputValues);
+        
+        // Assert
+        Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
+    }
+    
+    [Test]
+    public void ComputeSingleLinearRegression_NonNumberInYList_ReturnsSyntaxError()
+    {
+        // Arrange
+        List<string> inputValues =
+        [
+            "9, 49",
+            "6, 50",
+            "4, worm",
+            "1.5, 53",
+            "0.25, 56"
+        ];
+        const string expected = "Error: Cannot input non numbers into the calculation.";
+        
+        // Act
+        var result = LinearRegression.ComputeSingularLinearRegression(inputValues);
         
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
@@ -548,44 +534,18 @@ public class CalculatorLogicUnitTests
     public void ComputeSingleLinearRegression_TwoListOfZeroes_ReturnsError()
     {
         // Arrange
-        List<double> xValues = [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-        ];
-        List<double> yValues = [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+        List<string> inputValues =
+        [
+            "0, 0",
+            "0, 0",
+            "0, 0",
+            "0, 0",
+            "0, 0"
         ];
         const string expected = "Error: You cannot input two lists with only Zeroes.";
         
         // Act
-        var result = LinearRegression.ComputeSingularLinearRegression(xValues, yValues);
+        var result = LinearRegression.ComputeSingularLinearRegression(inputValues);
         
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
