@@ -12,16 +12,11 @@ public partial class Calculator : ComponentBase
     //getters and setters can be included in the base initialization, that's cool
     private string Message { get; set; } = "Enter values below, then select operation";
     
-    // only used for Single Linear Regression, all the others just have different formatting
-    public record Points(double X, double Y);
-    
-    private List<Points> UserInput { get; set; } = new();
-    
     private List<string> _formattedStringInput = new();
     
     private void ComputeHandleDataChange(ChangeEventArgs uInput)
     {
-        //Relevant Code to put input into a workable format for the Linear Regression call, otherwise its just left as a list of strings if applicable
+        //splits up the input into a list of strings, other stuff is handled by Calculator Logic
         Data = uInput.Value?.ToString() ?? string.Empty;
         var singleLineInput = Data.Split('\n');
         foreach (var line in singleLineInput)
@@ -29,33 +24,51 @@ public partial class Calculator : ComponentBase
             //saved so we can use it in other methods without having to come back here
             _formattedStringInput.Add(line);
         }
-        foreach (var pair in singleLineInput)
-        {
-            var xy = pair.Split(',');
-            if (xy.Length != 2) continue;
-
-            if (!double.TryParse(xy[0], out var x) || !double.TryParse(xy[1], out var y)) continue;
-            UserInput.Add(new Points(x, y));
-        }
-
-        Message = string.Join(", ", UserInput);
-        StateHasChanged();
     }
 
     private void OnClickResetCalculator(MouseEventArgs mouseEventArgs)
     {
         Data = "";
+        _formattedStringInput.Clear();
         Message = "Enter values below, then select operation";
     }
     
     private void ComputeSampleStandardDev(MouseEventArgs mouseEventArgs)
     {
-        Message = "This does something in the future for the Sample Standard Dev.";
+        double calculatedMean = DescriptiveStatistics.ComputeMean(_formattedStringInput).GetResult(); 
+        string mean = "" + calculatedMean;
+        CalculationResult result = DescriptiveStatistics.ComputeStandardDeviation(_formattedStringInput, mean, false);
+        if (result.GetWorking())
+        {
+            Message = result.GetEquationResult() + "\n " + result.GetResult();
+            Data = "";
+            _formattedStringInput.Clear();
+        }
+        else
+        {
+            Message = result.GetErrorMessage();
+            Data = "";
+            _formattedStringInput.Clear();
+        }
     }
     
     private void ComputePopulationStandardDev(MouseEventArgs mouseEventArgs)
     {
-        Message = "This does something in the future for the Population Standard Dev.";
+        double calculatedMean = DescriptiveStatistics.ComputeMean(_formattedStringInput).GetResult(); 
+        string mean = "" + calculatedMean;
+        CalculationResult result = DescriptiveStatistics.ComputeStandardDeviation(_formattedStringInput, mean, true);
+        if (result.GetWorking())
+        {
+            Message = result.GetEquationResult() + "\n " + result.GetResult();
+            Data = "";
+            _formattedStringInput.Clear();
+        }
+        else
+        {
+            Message = result.GetErrorMessage();
+            Data = "";
+            _formattedStringInput.Clear();
+        }
     }
     
     private void ComputeMean(MouseEventArgs mouseEventArgs)
@@ -77,16 +90,54 @@ public partial class Calculator : ComponentBase
     
     private void ComputeZScore(MouseEventArgs mouseEventArgs)
     {
-        Message = "This does something in the future for the Z Score.";
+        var inputMaterials = Data.Split(",");
+        CalculationResult result = DescriptiveStatistics.ComputeZScore(inputMaterials[0], inputMaterials[1], inputMaterials[2]);
+        if (result.GetWorking())
+        {
+            Message = result.GetEquationResult() + "\n " + result.GetResult();
+            Data = "";
+            _formattedStringInput.Clear();
+        }
+        else
+        {
+            Message = result.GetErrorMessage();
+            Data = "";
+            _formattedStringInput.Clear();
+        }
     }
     
     private void ComputeSingleLinearRegressionFormula(MouseEventArgs mouseEventArgs)
     {
-        Message = "This does something in the future for the Maths.";
+        CalculationResult result = LinearRegression.ComputeSingularLinearRegression(_formattedStringInput);
+        if (result.GetWorking())
+        {
+            Message = result.GetEquationResult() + "\n " + result.GetResult();
+            Data = "";
+            _formattedStringInput.Clear();
+        }
+        else
+        {
+            Message = result.GetErrorMessage();
+            Data = "";
+            _formattedStringInput.Clear();
+        }
     }
     
     private void ComputeYPrediction(MouseEventArgs mouseEventArgs)
     {
-        Message = "This does something in the future for the thing that uses the points.";
+        var inputMaterials = Data.Split(",");
+        CalculationResult result = LinearRegression.ComputeYFromLinearRegression(inputMaterials[0], inputMaterials[1], inputMaterials[2]);
+        if (result.GetWorking())
+        {
+            Message = result.GetEquationResult() + "\n " + result.GetResult();
+            Data = "";
+            _formattedStringInput.Clear();
+        }
+        else
+        {
+            Message = result.GetErrorMessage();
+            Data = "";
+            _formattedStringInput.Clear();
+        }
     }
 }

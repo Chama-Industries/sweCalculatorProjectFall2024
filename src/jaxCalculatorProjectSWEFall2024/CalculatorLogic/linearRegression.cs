@@ -5,10 +5,13 @@ using System.Collections.Generic;
 public class LinearRegression
 {
     //returns data in the form of y = mx + b
-    public static CalculationResult ComputeSingularLinearRegression(List<double> xValues, List<double> yValues)
+    public static CalculationResult ComputeSingularLinearRegression(List<string> uInput)
     {
+        List<double> xValues = new List<double>();
+        List<double> yValues = new List<double>();
         CalculationResult result = new CalculationResult();
-        if (xValues.Count < 1 || yValues.Count < 1)
+        //Logic to ensure that we have a set of variables we can work with
+        if (uInput.Count < 1)
         {
             result.SetErrorMessage("Error: You cannot input an Empty List.");
             result.SetWorking(false);
@@ -16,14 +19,56 @@ public class LinearRegression
             return result;
         }
 
-        if (xValues.Count != yValues.Count)
+
+        //Logic to ensure that we have Numbers in both lists
+        foreach (var u in uInput)
         {
-            result.SetErrorMessage("Error: The number of xValues and yValues do not match.");
-            result.SetWorking(false);
-            result.SetMethodType("Singular Linear Regression");
-            return result;
+            var points = u.Split(',');
+            var xValueIsNumber = double.TryParse(points[0], out double x);
+            if (xValueIsNumber)
+            {
+                xValues.Add(x);
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(points[0]))
+                {
+                    {
+                        result.SetErrorMessage("Error: The number of xValues and yValues do not match.");
+                        result.SetWorking(false);
+                        result.SetMethodType("Singular Linear Regression");
+                        return result;
+                    }
+                }
+                result.SetWorking(false);
+                result.SetMethodType("Singular Linear Regression");
+                result.SetErrorMessage("Error: Cannot input non numbers into the calculation.");
+                return result;
+            }
+            var yValueIsNumber = double.TryParse(points[1], out double y);
+            if (yValueIsNumber)
+            {
+                yValues.Add(y);
+            }
+            else
+            {
+                if (string.IsNullOrWhiteSpace(points[1]))
+                {
+                    {
+                        result.SetErrorMessage("Error: The number of xValues and yValues do not match.");
+                        result.SetWorking(false);
+                        result.SetMethodType("Singular Linear Regression");
+                        return result;
+                    }
+                }
+                result.SetWorking(false);
+                result.SetMethodType("Singular Linear Regression");
+                result.SetErrorMessage("Error: Cannot input non numbers into the calculation.");
+                return result;
+            }
         }
         
+        //Logic to ensure that we have unique values
         int counter = 0;
         int yCounter = 0;
         foreach (var x in xValues)
@@ -53,7 +98,7 @@ public class LinearRegression
         var checker = xValues[0];
         foreach (var x in xValues)
         {
-            //floats are weird, got a suggestion on where to cutoff numbers being too similar
+            //math is weird, got a suggestion on where to cutoff numbers being too similar
             if (Math.Abs(x - checker) < 0.001)
             {
                 counter++;
@@ -84,21 +129,21 @@ public class LinearRegression
         }
 
 
-        float sumOfXValues = 0;
-        float sumOfYValues = 0;
-        float sumOfXValuesSquared = 0;
+        double sumOfXValues = 0;
+        double sumOfYValues = 0;
+        double sumOfXValuesSquared = 0;
         double sumOfXAndYValues = 0;
-        foreach (float x in xValues)
+        foreach (double x in xValues)
         {
             sumOfXValues += x;
         }
 
-        foreach (float x in xValues)
+        foreach (double x in xValues)
         {
-            sumOfXValuesSquared += (float)Math.Pow(x, 2);
+            sumOfXValuesSquared += Math.Pow(x, 2);
         }
 
-        foreach (float y in yValues)
+        foreach (double y in yValues)
         {
             sumOfYValues += y;
         }
@@ -109,7 +154,7 @@ public class LinearRegression
         }
 
         var slope = ((xValues.Count * sumOfXAndYValues) - (sumOfXValues * sumOfYValues)) /
-                    ((xValues.Count * sumOfXValuesSquared) - (float)Math.Pow(sumOfXValues, 2));
+                    ((xValues.Count * sumOfXValuesSquared) - Math.Pow(sumOfXValues, 2));
         var coefficient = (sumOfYValues - slope * sumOfXValues) / xValues.Count;
         string slopeConvert = "" + slope;
         string coefficientConvert = "" + coefficient;
