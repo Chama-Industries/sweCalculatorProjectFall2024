@@ -45,7 +45,7 @@ information on how to run the Unit Tests from the Console
 <h2>Reviewing Unit Test Coverage</h2>
 
 <p>
-an image of Coverage from the IDE goes here
+![calculatorLogicFullCoverageSWE3624](https://github.com/user-attachments/assets/de283860-57c5-485d-98fd-5c73ccab450c)
 </p>
 
 <h2>Executing End-To-End Tests</h2>
