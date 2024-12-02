@@ -7,6 +7,7 @@ public class LinearRegression
     //returns data in the form of y = mx + b
     public static CalculationResult ComputeSingularLinearRegression(List<string> uInput)
     {
+        //preq-LOGIC-7
         List<double> xValues = new List<double>();
         List<double> yValues = new List<double>();
         CalculationResult result = new CalculationResult();
@@ -178,6 +179,7 @@ public class LinearRegression
 
     public static CalculationResult ComputeYFromLinearRegression(List<string> fullInput)
     {
+        //preq-LOGIC-8
         var uInput = fullInput[0].Split(",");
         string inX = uInput[0];
         string inSlope = uInput[1];
