@@ -8,6 +8,7 @@ public class Tests : PageTest
     [Test]
     public async Task CalculatorWebUi_PageTitle_IsCalculator()
     {
+        //preq-E2E-TEST-5
         const string url = "http://localhost:5096/";
         const string pageTitle = "Calculator";
         await Page.GotoAsync(url);

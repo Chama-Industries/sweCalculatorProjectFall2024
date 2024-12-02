@@ -38,6 +38,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeMean_ListOfFloatingPointValues_ReturnsCorrectMean()
     {
+        //preq-UNIT-TEST-4
         // Arrange (declare variables needed for testing)
         List<string> values = new List<string>();
         values.Add("9");
@@ -57,6 +58,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeMean_ListOfFloatingPointValues_ReturnsZero()
     {
+        //preq-UNIT-TEST-4
         // Arrange (declare variables needed for testing)
         List<string> values = new List<string>();
         values.Add("10");
@@ -76,6 +78,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeMean_EmptyList_ReturnsError()
     {
+        //preq-UNIT-TEST-4
         // Arrange
         List<string> values = new List<string>();
         const string expected = "Error: Input is empty.";
@@ -90,6 +93,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeMean_NonNumberInList_ReturnsSyntaxError()
     {
+        //preq-UNIT-TEST-4
         // Arrange
         List<string> values = new List<string>();
         values.Add("baboon");
@@ -106,6 +110,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeStandardDeviation_ListOfFloatingPointValuesFloatAndBoolean_ReturnsSampleStandardDeviation()
     {
+        //preq-UNIT-TEST-2
         // Arrange
         const string mean = "7.0";
         const bool isPopulation = false;
@@ -128,6 +133,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeStandardDeviation_ListOfFloatingPointValuesFloatAndBoolean_ReturnsPopulationStandardDeviation()
     {
+        //preq-UNIT-TEST-3
         // Arrange
         const string mean = "7.0";
         const bool isPopulation = true;
@@ -150,6 +156,8 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeStandardDeviation_SmallPopulationList_ReturnsPopulationError()
     {
+        //preq-UNIT-TEST-2
+        //preq-UNIT-TEST-3
         // Arrange
         List<string> values = new List<string>();
         values.Add("9");
@@ -167,6 +175,8 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeStandardDeviation_NonNumberInList_ReturnsSyntaxError()
     {
+        //preq-UNIT-TEST-2
+        //preq-UNIT-TEST-3
         // Arrange
         List<string> values = new List<string>();
         values.Add("kangaroo");
@@ -184,6 +194,8 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeStandardDeviation_NonNumberInMean_ReturnsSyntaxError()
     {
+        //preq-UNIT-TEST-2
+        //preq-UNIT-TEST-3
         // Arrange
         List<string> values = new List<string>();
         values.Add("2");
@@ -204,6 +216,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeStandardDeviation_EmptyPopulationList_ReturnsError()
     {
+        //preq-UNIT-TEST-3
         // Arrange
         List<string> values = new List<string>();
         const string mean = "0";
@@ -220,6 +233,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeStandardDeviation_EmptySampleList_ReturnsError()
     {
+        //preq-UNIT-TEST-2
         // Arrange
         List<string> values = new List<string>();
         const string mean = "0";
@@ -237,6 +251,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeZScore_ThreeFloatingPointValues_ReturnsZScore()
     {
+        //preq-UNIT-TEST-5
         // Arrange
         List<string> values = new List<string>();
         values.Add("11.5, 7, 2");
@@ -252,6 +267,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeZScore_ZeroStandardDeviation_ReturnsDivideByZeroError()
     {
+        //preq-UNIT-TEST-5
         // Arrange
         List<string> values = new List<string>();
         values.Add("11.5, 7, 0");
@@ -267,6 +283,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeZScore_NonNumberInputToSolve_ReturnsSyntaxError()
     {
+        //preq-UNIT-TEST-5
         // Arrange
         List<string> values = new List<string>();
         values.Add("cat, 7, 2");
@@ -282,6 +299,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeZScore_NonNumberMean_ReturnsSyntaxError()
     {
+        //preq-UNIT-TEST-5
         // Arrange
         List<string> values = new List<string>();
         values.Add("11.5, dog, 2");
@@ -297,6 +315,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeZScore_NonNumberStDev_ReturnsSyntaxError()
     {
+        //preq-UNIT-TEST-5
         // Arrange
         List<string> values = new List<string>();
         values.Add("11.5, 7, mouse");
@@ -310,9 +329,11 @@ public class CalculatorLogicUnitTests
     }
     
     // Linear Regression Logic Tests
+    // Compute SLR Formula
     [Test]
     public void ComputeSingleLinearRegression_TwoListsOfFloatingPointValues_ReturnsSingleLinearRegressionFormula()
     {
+        //preq-UNIT-TEST-6
         // Arrange
         List<string> inputValues =
         [
@@ -345,6 +366,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeSingleLinearRegression_TwoListsOfFloatsOfDifferentLengthsXSide_ReturnsError()
     {
+        //preq-UNIT-TEST-6
         // Arrange
         List<string> inputValues =
         [
@@ -376,6 +398,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeSingleLinearRegression_TwoListsOfFloatsOfDifferentLengthsYSide_ReturnsError()
     {
+        //preq-UNIT-TEST-6
         // Arrange
         List<string> inputValues =
         [
@@ -407,6 +430,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeSingleLinearRegression_TwoListsOfFloatingPointValues_ReturnsSingleLinearRegressionFormulaWithNegativeSlope()
     {
+        //preq-UNIT-TEST-6
         // Arrange
         List<string> inputValues =
         [
@@ -430,6 +454,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeSingleLinearRegression_AtLeastOneListEmpty_ReturnsError()
     {
+        //preq-UNIT-TEST-6
         // Arrange
         List<string> values = new List<string>();
         const string expected = "Error: You cannot input an Empty List.";
@@ -444,6 +469,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeSingleLinearRegression_XListOfDuplicates_ReturnsError()
     {
+        //preq-UNIT-TEST-6
         // Arrange
         List<string> inputValues =
         [
@@ -465,6 +491,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeSingleLinearRegression_YListOfDuplicates_ReturnsError()
     {
+        //preq-UNIT-TEST-6
         // Arrange
         List<string> inputValues =
         [
@@ -486,6 +513,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeSingleLinearRegression_NonNumberInXList_ReturnsSyntaxError()
     {
+        //preq-UNIT-TEST-6
         // Arrange
         List<string> inputValues =
         [
@@ -507,6 +535,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeSingleLinearRegression_NonNumberInYList_ReturnsSyntaxError()
     {
+        //preq-UNIT-TEST-6
         // Arrange
         List<string> inputValues =
         [
@@ -528,6 +557,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeSingleLinearRegression_TwoListOfZeroes_ReturnsError()
     {
+        //preq-UNIT-TEST-6
         // Arrange
         List<string> inputValues =
         [
@@ -546,9 +576,11 @@ public class CalculatorLogicUnitTests
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
     }
 
+    // Compute Y
     [Test]
     public void ComputeYFromLinearRegression_ThreeFloats_ReturnsYValue()
     {
+        //preq-UNIT-TEST-7
         // Arrange
         List<string> values = new List<string>();
         values.Add("1.6, 2.4, 10.0");
@@ -564,6 +596,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeYFromLinearRegression_NonNumberXInput_ReturnsSyntaxError()
     {
+        //preq-UNIT-TEST-7
         // Arrange
         List<string> values = new List<string>();
         values.Add("owl, 2.4, 10.0");
@@ -579,6 +612,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeYFromLinearRegression_NonNumberSlopeInput_ReturnsSyntaxError()
     {
+        //preq-UNIT-TEST-7
         // Arrange
         List<string> values = new List<string>();
         values.Add("1.6, ostrich, 10.0");
@@ -594,6 +628,7 @@ public class CalculatorLogicUnitTests
     [Test]
     public void ComputeYFromLinearRegression_NonNumberBInput_ReturnsSyntaxError()
     {
+        //preq-UNIT-TEST-7
         // Arrange
         List<string> values = new List<string>();
         values.Add("1.6, 2.4, rat");

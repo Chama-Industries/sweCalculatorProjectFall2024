@@ -66,6 +66,7 @@ public class DescriptiveStatistics
 {
     public static CalculationResult ComputeMean(List<string> values)
     {
+        //preq-LOGIC-5
         CalculationResult result = new CalculationResult();
         List<float> toCompute = new List<float>();
         foreach (string value in values)
@@ -102,6 +103,9 @@ public class DescriptiveStatistics
     //input is 1 value per line, likely take in a List/Array of values (could also use a Stack or Queue)
     public static CalculationResult ComputeStandardDeviation(List<string> values, string inMean, bool isPopulation)
     {
+        //preq-LOGIC-3
+        //preq-LOGIC-4
+        // They're both here cuz boolean 
         CalculationResult result = new CalculationResult();
         List<float> toCompute = new List<float>();
         foreach (string value in values)
@@ -174,6 +178,7 @@ public class DescriptiveStatistics
     //input is all on the same line
     public static CalculationResult ComputeZScore(List<string> fullInput)
     {
+        //preq-LOGIC-6
         var formattedInput = fullInput[0].Split(",");
         string stringToParse = formattedInput[0];
         string inMean = formattedInput[1];
