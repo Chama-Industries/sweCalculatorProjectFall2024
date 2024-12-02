@@ -176,8 +176,13 @@ public class LinearRegression
         return result;
     }
 
-    public static CalculationResult ComputeYFromLinearRegression(string inX, string inSlope, string inB)
+    public static CalculationResult ComputeYFromLinearRegression(List<string> fullInput)
     {
+        var uInput = fullInput[0].Split(",");
+        string inX = uInput[0];
+        string inSlope = uInput[1];
+        string inB = uInput[2];
+        
         CalculationResult result = new CalculationResult();
         if (!float.TryParse(inX, out float parsedValueX))
         {

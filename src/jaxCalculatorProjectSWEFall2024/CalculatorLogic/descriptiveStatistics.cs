@@ -172,8 +172,13 @@ public class DescriptiveStatistics
     }
     
     //input is all on the same line
-    public static CalculationResult ComputeZScore(string stringToParse, string inMean, string inStandardDeviation)
+    public static CalculationResult ComputeZScore(List<string> fullInput)
     {
+        var formattedInput = fullInput[0].Split(",");
+        string stringToParse = formattedInput[0];
+        string inMean = formattedInput[1];
+        string inStandardDeviation = formattedInput[2];
+        
         CalculationResult result = new CalculationResult();
         if (!float.TryParse(stringToParse, out float parsedValueI))
         {

@@ -238,13 +238,12 @@ public class CalculatorLogicUnitTests
     public void ComputeZScore_ThreeFloatingPointValues_ReturnsZScore()
     {
         // Arrange
-        const string inputValue = "11.5";
-        const string mean = "7";
-        const string standardDeviation = "2";
+        List<string> values = new List<string>();
+        values.Add("11.5, 7, 2");
         const double expected = 2.25;
         
         // Act
-        var result = DescriptiveStatistics.ComputeZScore(inputValue, mean, standardDeviation);
+        var result = DescriptiveStatistics.ComputeZScore(values);
         
         // Assert
         Assert.That(result.GetResult(), Is.EqualTo(expected));
@@ -254,13 +253,12 @@ public class CalculatorLogicUnitTests
     public void ComputeZScore_ZeroStandardDeviation_ReturnsDivideByZeroError()
     {
         // Arrange
-        const string inputValue = "3.0";
-        const string mean = "7.0";
-        const string standardDeviation = "0.0";
+        List<string> values = new List<string>();
+        values.Add("11.5, 7, 0");
         const string expected = "Error: Cannot Divide by Zero.";
         
         // Act
-        var result = DescriptiveStatistics.ComputeZScore(inputValue, mean, standardDeviation);
+        var result = DescriptiveStatistics.ComputeZScore(values);
         
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
@@ -270,13 +268,12 @@ public class CalculatorLogicUnitTests
     public void ComputeZScore_NonNumberInputToSolve_ReturnsSyntaxError()
     {
         // Arrange
-        const string inputValue = "cat";
-        const string mean = "7.0";
-        const string standardDeviation = "2.0";
+        List<string> values = new List<string>();
+        values.Add("cat, 7, 2");
         const string expected = "Error: Cannot input non numbers into the calculation.";
         
         // Act
-        var result = DescriptiveStatistics.ComputeZScore(inputValue, mean, standardDeviation);
+        var result = DescriptiveStatistics.ComputeZScore(values);
         
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
@@ -286,13 +283,12 @@ public class CalculatorLogicUnitTests
     public void ComputeZScore_NonNumberMean_ReturnsSyntaxError()
     {
         // Arrange
-        const string inputValue = "3.0";
-        const string mean = "dog";
-        const string standardDeviation = "2.0";
+        List<string> values = new List<string>();
+        values.Add("11.5, dog, 2");
         const string expected = "Error: Cannot input non numbers into the calculation.";
         
         // Act
-        var result = DescriptiveStatistics.ComputeZScore(inputValue, mean, standardDeviation);
+        var result = DescriptiveStatistics.ComputeZScore(values);
         
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
@@ -302,13 +298,12 @@ public class CalculatorLogicUnitTests
     public void ComputeZScore_NonNumberStDev_ReturnsSyntaxError()
     {
         // Arrange
-        const string inputValue = "3.0";
-        const string mean = "7.0";
-        const string standardDeviation = "mouse";
+        List<string> values = new List<string>();
+        values.Add("11.5, 7, mouse");
         const string expected = "Error: Cannot input non numbers into the calculation.";
         
         // Act
-        var result = DescriptiveStatistics.ComputeZScore(inputValue, mean, standardDeviation);
+        var result = DescriptiveStatistics.ComputeZScore(values);
         
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
@@ -555,13 +550,12 @@ public class CalculatorLogicUnitTests
     public void ComputeYFromLinearRegression_ThreeFloats_ReturnsYValue()
     {
         // Arrange
-        const string xInput = "1.6";
-        const string slope = "2.4";
-        const string bCoefficient = "10.0";
+        List<string> values = new List<string>();
+        values.Add("1.6, 2.4, 10.0");
         const float expected = 13.84f;
         
         // Act
-        var result = LinearRegression.ComputeYFromLinearRegression(xInput, slope, bCoefficient);
+        var result = LinearRegression.ComputeYFromLinearRegression(values);
         
         // Assert
         Assert.That(result.GetResult(), Is.EqualTo(expected));
@@ -571,13 +565,12 @@ public class CalculatorLogicUnitTests
     public void ComputeYFromLinearRegression_NonNumberXInput_ReturnsSyntaxError()
     {
         // Arrange
-        const string xInput = "owl";
-        const string slope = "2.4";
-        const string bCoefficient = "10.0";
+        List<string> values = new List<string>();
+        values.Add("owl, 2.4, 10.0");
         const string expected = "Error: Cannot input non numbers into the calculation.";
         
         // Act
-        var result = LinearRegression.ComputeYFromLinearRegression(xInput, slope, bCoefficient);
+        var result = LinearRegression.ComputeYFromLinearRegression(values);
         
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
@@ -587,13 +580,12 @@ public class CalculatorLogicUnitTests
     public void ComputeYFromLinearRegression_NonNumberSlopeInput_ReturnsSyntaxError()
     {
         // Arrange
-        const string xInput = "1.6";
-        const string slope = "ostrich";
-        const string bCoefficient = "10.0";
+        List<string> values = new List<string>();
+        values.Add("1.6, ostrich, 10.0");
         const string expected = "Error: Cannot input non numbers into the calculation.";
         
         // Act
-        var result = LinearRegression.ComputeYFromLinearRegression(xInput, slope, bCoefficient);
+        var result = LinearRegression.ComputeYFromLinearRegression(values);
         
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
@@ -603,13 +595,12 @@ public class CalculatorLogicUnitTests
     public void ComputeYFromLinearRegression_NonNumberBInput_ReturnsSyntaxError()
     {
         // Arrange
-        const string xInput = "1.6";
-        const string slope = "2.4";
-        const string bCoefficient = "rat";
+        List<string> values = new List<string>();
+        values.Add("1.6, 2.4, rat");
         const string expected = "Error: Cannot input non numbers into the calculation.";
         
         // Act
-        var result = LinearRegression.ComputeYFromLinearRegression(xInput, slope, bCoefficient);
+        var result = LinearRegression.ComputeYFromLinearRegression(values);
         
         // Assert
         Assert.That(result.GetErrorMessage(), Is.EqualTo(expected));
