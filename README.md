@@ -4,7 +4,7 @@
 <p>
 This repository contains a Calculator App that I, William Grace, created for a project during the Fall Semester of 2024 at KSU. The Calculator contains the ability to calculate Means, Standard Deviations, and a Line of Best Fit.
 </p>
-<br/>
+
 <h2>Table of Contents</h2>
 
 <p>
@@ -12,19 +12,19 @@ this is where the links to the other sections go, this comes last
 </p>
 <br/>
 
-<h3>Team Members</h3>
+<h2>Team Members</h2>
 
 <p>
 William Grace, that's right! This is all me baby!
 </p>
 
-<h3>Architecture</h3>
+<h2>Architecture</h2>
 
 <p>
 an Image will go here
 </p>
 
-<h3>Environment</h3>
+<h2>Environment</h2>
 
 <p>
 this is where the stuff is run and what the stuff to run it requires
