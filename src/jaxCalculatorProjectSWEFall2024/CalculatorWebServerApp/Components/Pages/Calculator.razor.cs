@@ -11,8 +11,13 @@ public partial class Calculator : ComponentBase
 
     //getters and setters can be included in the base initialization, that's cool
     private string Message { get; set; } = "Enter values below, then select operation";
+    private string ResultMessage { get; set; } = "";
     
+    //thing i send to code
     private List<string> _formattedStringInput = new();
+    
+    //allows me to change color of background if an error is thrown
+    private string _upperColor = "background: #FFECD7; color: black";
     
     private void ComputeHandleDataChange(ChangeEventArgs uInput)
     {
@@ -30,7 +35,9 @@ public partial class Calculator : ComponentBase
     {
         Data = "";
         _formattedStringInput.Clear();
+        _upperColor = "alert alert-warning text-center background: #FFECD7; color: black";
         Message = "Enter values below, then select operation";
+        ResultMessage = "";
     }
     
     private void ComputeSampleStandardDev(MouseEventArgs mouseEventArgs)
@@ -40,13 +47,17 @@ public partial class Calculator : ComponentBase
         CalculationResult result = DescriptiveStatistics.ComputeStandardDeviation(_formattedStringInput, mean, false);
         if (result.GetWorking())
         {
-            Message = result.GetEquationResult() + "\n " + result.GetResult();
+            _upperColor = "background: #FFECD7; color: black";
+            Message = result.GetMethodType();
+            ResultMessage = "" + result.GetResult();
             Data = "";
             _formattedStringInput.Clear();
         }
         else
         {
-            Message = result.GetErrorMessage();
+            _upperColor = "background: #B70F0A; color: white";
+            Message = "Invalid Input";
+            ResultMessage = result.GetErrorMessage();
             Data = "";
             _formattedStringInput.Clear();
         }
@@ -59,13 +70,17 @@ public partial class Calculator : ComponentBase
         CalculationResult result = DescriptiveStatistics.ComputeStandardDeviation(_formattedStringInput, mean, true);
         if (result.GetWorking())
         {
-            Message = result.GetEquationResult() + "\n " + result.GetResult();
+            _upperColor = "background: #FFECD7; color: black";
+            Message = result.GetMethodType();
+            ResultMessage = "" + result.GetResult();
             Data = "";
             _formattedStringInput.Clear();
         }
         else
         {
-            Message = result.GetErrorMessage();
+            _upperColor = "background: #B70F0A; color: white";
+            Message = "Invalid Input";
+            ResultMessage = result.GetErrorMessage();
             Data = "";
             _formattedStringInput.Clear();
         }
@@ -76,13 +91,17 @@ public partial class Calculator : ComponentBase
         CalculationResult result = DescriptiveStatistics.ComputeMean(_formattedStringInput);
         if (result.GetWorking())
         {
-            Message = result.GetEquationResult() + "\n " + result.GetResult();
+            _upperColor = "background: #FFECD7; color: black";
+            Message = result.GetMethodType();
+            ResultMessage = "" + result.GetResult();
             Data = "";
             _formattedStringInput.Clear();
         }
         else
         {
-            Message = result.GetErrorMessage();
+            _upperColor = "background: #B70F0A; color: white";
+            Message = "Invalid Input";
+            ResultMessage = result.GetErrorMessage();
             Data = "";
             _formattedStringInput.Clear();
         }
@@ -90,17 +109,20 @@ public partial class Calculator : ComponentBase
     
     private void ComputeZScore(MouseEventArgs mouseEventArgs)
     {
-        var inputMaterials = Data.Split(",");
-        CalculationResult result = DescriptiveStatistics.ComputeZScore(inputMaterials[0], inputMaterials[1], inputMaterials[2]);
+        CalculationResult result = DescriptiveStatistics.ComputeZScore(_formattedStringInput);
         if (result.GetWorking())
         {
-            Message = result.GetEquationResult() + "\n " + result.GetResult();
+            _upperColor = "background: #FFECD7; color: black";
+            Message = result.GetMethodType();
+            ResultMessage = "" + result.GetResult();
             Data = "";
             _formattedStringInput.Clear();
         }
         else
         {
-            Message = result.GetErrorMessage();
+            _upperColor = "background: #B70F0A; color: white";
+            Message = "Invalid Input";
+            ResultMessage = result.GetErrorMessage();
             Data = "";
             _formattedStringInput.Clear();
         }
@@ -111,13 +133,17 @@ public partial class Calculator : ComponentBase
         CalculationResult result = LinearRegression.ComputeSingularLinearRegression(_formattedStringInput);
         if (result.GetWorking())
         {
-            Message = result.GetEquationResult() + "\n " + result.GetResult();
+            _upperColor = "background: #FFECD7; color: black";
+            Message = result.GetMethodType();
+            ResultMessage = "" + result.GetEquationResult();
             Data = "";
             _formattedStringInput.Clear();
         }
         else
         {
-            Message = result.GetErrorMessage();
+            _upperColor = "background: #B70F0A; color: white";
+            Message = "Invalid Input";
+            ResultMessage = result.GetErrorMessage();
             Data = "";
             _formattedStringInput.Clear();
         }
@@ -125,17 +151,20 @@ public partial class Calculator : ComponentBase
     
     private void ComputeYPrediction(MouseEventArgs mouseEventArgs)
     {
-        var inputMaterials = Data.Split(",");
-        CalculationResult result = LinearRegression.ComputeYFromLinearRegression(inputMaterials[0], inputMaterials[1], inputMaterials[2]);
+        CalculationResult result = LinearRegression.ComputeYFromLinearRegression(_formattedStringInput);
         if (result.GetWorking())
         {
-            Message = result.GetEquationResult() + "\n " + result.GetResult();
+            _upperColor = "background: #FFECD7; color: black";
+            Message = result.GetMethodType();
+            ResultMessage = "" + result.GetResult();
             Data = "";
             _formattedStringInput.Clear();
         }
         else
         {
-            Message = result.GetErrorMessage();
+            _upperColor = "background: #B70F0A; color: white";
+            Message = "Invalid Input";
+            ResultMessage = result.GetErrorMessage();
             Data = "";
             _formattedStringInput.Clear();
         }
