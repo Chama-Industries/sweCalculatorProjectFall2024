@@ -129,7 +129,7 @@ public class DescriptiveStatistics
         }
 
         float mean = parsedMean;
-        float standardDeviation;
+        double standardDeviation;
         float tempValueHolder = 0;
         if (isPopulation && toCompute.Count < 2)
         {
@@ -168,6 +168,8 @@ public class DescriptiveStatistics
             result.SetEquationResult("\u221a(" + tempValueHolder + " / " + (toCompute.Count-1) + ")");
             standardDeviation = (float)Math.Sqrt(tempValueHolder/(values.Count-1));
         }
+
+        standardDeviation = Math.Round(standardDeviation, 6);
         result.SetResult(standardDeviation);
         result.SetWorking(true);
         result.SetMethodType("Standard Deviation");
@@ -219,7 +221,7 @@ public class DescriptiveStatistics
             result.SetErrorMessage("Error: Cannot Divide by Zero.");
         }
         
-        result.SetResult(Math.Abs((inputToSolve - mean)/(standardDeviation)));
+        result.SetResult(Math.Round((inputToSolve - mean) / (standardDeviation), 5));
         result.SetEquationResult("(" + inputToSolve + "-" +  mean + ") / " + standardDeviation);
         result.SetWorking(true);
         result.SetMethodType("Z Score");

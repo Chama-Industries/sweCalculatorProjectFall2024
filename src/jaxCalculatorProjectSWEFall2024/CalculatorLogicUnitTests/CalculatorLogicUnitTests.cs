@@ -120,7 +120,7 @@ public class CalculatorLogicUnitTests
         values.Add("8");
         values.Add("5");
         values.Add("7");
-        const double expected = 1.5811388492584229;
+        const double expected = 1.581139;
         
         
         // Act
@@ -143,7 +143,7 @@ public class CalculatorLogicUnitTests
         values.Add("8");
         values.Add("5");
         values.Add("7");
-        const double expected = 1.4142135381698608;
+        const double expected = 1.414214;
         
         
         // Act
@@ -255,7 +255,7 @@ public class CalculatorLogicUnitTests
         // Arrange
         List<string> values = new List<string>();
         values.Add("11.5, 7, 2");
-        const double expected = 2.25;
+        const double expected = -2.25;
         
         // Act
         var result = DescriptiveStatistics.ComputeZScore(values);
@@ -584,7 +584,7 @@ public class CalculatorLogicUnitTests
         // Arrange
         List<string> values = new List<string>();
         values.Add("1.6, 2.4, 10.0");
-        const float expected = 13.84f;
+        const double expected = 13.84;
         
         // Act
         var result = LinearRegression.ComputeYFromLinearRegression(values);
