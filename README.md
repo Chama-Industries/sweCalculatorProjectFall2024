@@ -8,9 +8,20 @@ This repository contains a Calculator App that I, William Grace, created for a p
 <h2>Table of Contents</h2>
 
 <p>
-this is where the links to the other sections go, this comes last
+- [Environment] (#environment) 
+  <br/>
+- [Executing the Web Application] (#executing-the-web-application)
+  <br/>
+- [Executing Unit Tests] (#executing-unit-tests) 
+  <br/>
+- [Reviewing Unit Test Converage] (#reviewing-unit-test-coverage) 
+  <br/>
+- [Executing End-To-End Tests] (#executing-end-to-end-tests) 
+  <br/>
+- [Final Video Presentation] (#final-video-presentation) 
+  <br/>
+  
 </p>
-<br/>
 
 <h2>Team Members</h2>
 
