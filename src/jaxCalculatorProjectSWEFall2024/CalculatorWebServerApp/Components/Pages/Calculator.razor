@@ -12,7 +12,7 @@
             <div class="alert alert-warning text-center" style="@_upperColor" runat="server">
                 <b>@Message</b>
                 <br/>
-                @ResultMessage
+                <text data-testid="resultDisplay">@ResultMessage</text>
             </div>
         </div>
     </div>
@@ -20,6 +20,7 @@
     <div class="row">
         <div class="col-12">
             <textarea 
+            id="UserInput"
             class="form-control"
             rows="3"
             value ="@Data"

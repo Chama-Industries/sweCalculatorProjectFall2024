@@ -214,7 +214,7 @@ public class LinearRegression
         float b = parsedValueB;
         
         //uses y = mx + b (classic formula)
-        result.SetResult(slope * x + b);
+        result.SetResult(Math.Round(slope * x + b, 5));
         result.SetEquationResult("" + slope + " * " + x + " + " + b);
         result.SetWorking(true);
         result.SetMethodType("Compute Y from Linear Regression");
