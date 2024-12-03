@@ -2,7 +2,9 @@
 <h1>KSU SWE 3643 Software Testing and Quality Assurance Semester Project: Web-Based Calculator</h1>
 
 <p>
-This repository contains a Calculator App that I, William Grace, created for a project during the Fall Semester of 2024 at KSU. The Calculator contains the ability to calculate Means, Standard Deviations, and a Line of Best Fit.
+This repository contains a Calculator App that I, William Grace, created for a project during the Fall Semester of 2024 at KSU. The Calculator contains the ability to calculate Means, Standard Deviations, and a Line of Best Fit. 
+<br/>
+NOTE: I didn't have enough time to finish this READ ME due to limitations from other classes. The Video stored outside of the src file should be good enough to show whats going on.
 </p>
 
 <h2>Table of Contents</h2>
@@ -32,7 +34,8 @@ William Grace, that's right! This is all me baby!
 <h2>Architecture</h2>
 
 <p>
-an Image will go here
+![goodEnoughRepresentationOfTheArchitecture](https://github.com/user-attachments/assets/8539315d-bffa-4dca-bce1-53896128096e)
+
 </p>
 
 <h2>Environment</h2>
@@ -56,7 +59,7 @@ information on how to run the Unit Tests from the Console
 <h2>Reviewing Unit Test Coverage</h2>
 
 <p>
-![calculatorLogicFullCoverageSWE3624] (https://github.com/user-attachments/assets/de283860-57c5-485d-98fd-5c73ccab450c)
+![calculatorLogicFullCoverageSWE3624](https://github.com/user-attachments/assets/de283860-57c5-485d-98fd-5c73ccab450c)
 </p>
 
 <h2>Executing End-To-End Tests</h2>
