@@ -8,17 +8,17 @@ This repository contains a Calculator App that I, William Grace, created for a p
 <h2>Table of Contents</h2>
 
 <p>
-- [Environment] (#environment) 
+- [Environment](#environment) 
   <br/>
-- [Executing the Web Application] (#executing-the-web-application)
+- [Executing the Web Application](#executing-the-web-application)
   <br/>
-- [Executing Unit Tests] (#executing-unit-tests) 
+- [Executing Unit Tests](#executing-unit-tests) 
   <br/>
-- [Reviewing Unit Test Converage] (#reviewing-unit-test-coverage) 
+- [Reviewing Unit Test Converage](#reviewing-unit-test-coverage) 
   <br/>
-- [Executing End-To-End Tests] (#executing-end-to-end-tests) 
+- [Executing End-To-End Tests](#executing-end-to-end-tests) 
   <br/>
-- [Final Video Presentation] (#final-video-presentation) 
+- [Final Video Presentation](#final-video-presentation) 
   <br/>
   
 </p>
