@@ -4,7 +4,7 @@
 <p>
 This repository contains a Calculator App that I, William Grace, created for a project during the Fall Semester of 2024 at KSU. The Calculator contains the ability to calculate Means, Standard Deviations, and a Line of Best Fit. 
 <br/>
-NOTE: I didn't have enough time to finish this READ ME due to limitations from other classes. The Video stored outside of the src file should be good enough to show whats going on.
+NOTE: I didn't have enough time to finish this READ ME due to limitations from other classes. <br/>There is a video of me showcasing my stuff further down this README, if nothing works (which i hope isn't the case).
 </p>
 
 <h2>Table of Contents</h2>
