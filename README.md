@@ -71,5 +71,5 @@ information on how to run the End to End Tests from the Console
 <h2>Final Video Presentation</h2>
 
 <p>
-hey there should be a video here Soon
+[hey there's a video here](https://youtu.be/RwEwQgJBEaM)
 </p>
